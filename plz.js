@@ -33,6 +33,6 @@ btn.addEventListener("click", function() {
         setTimeout(function() {
             tmp = 1,
             btn.classList.remove("hide")
-        }, 9000)
+        }, 8500)
     )
 })

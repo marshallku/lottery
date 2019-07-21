@@ -12,7 +12,7 @@ function decryptEffect(elem, time) {
         elem.innerText = Math.floor(Math.random()*44 + 1)
     }, 10);
     setTimeout(function() {
-        const random = Math.floor(Math.random() * numbers.length - 1);
+        const random = Math.floor(Math.random() * numbers.length);
         clearInterval(effect),
         elem.classList.add("done"),
         elem.innerText = numbers[random],

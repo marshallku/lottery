@@ -1,41 +1,36 @@
-const btn = document.getElementById("btn");
-let tmp = 1, numbers;
+let tmp = 1;
+let numbers;
 
-function getindex(c) {
-    let d = 0;
-    for (d; c = c.previousElementSibling; d++);
-    return d
-}
-
-function decryptEffect(elem, time) {
-    const effect = setInterval(function() {
-        elem.innerText = Math.floor(Math.random()*44 + 1)
+function decryptEffect(element, time) {
+    const effect = setInterval(() => {
+        element.innerText = Math.floor(Math.random() * 44 + 1);
     }, 10);
-    setTimeout(function() {
+
+    setTimeout(() => {
         const random = Math.floor(Math.random() * numbers.length);
-        clearInterval(effect),
-        elem.classList.add("done"),
-        elem.innerText = numbers[random],
-        numbers.splice(random, 1)
-    },  time * 1000 + 1000)
+
+        clearInterval(effect);
+        element.classList.add("done");
+        element.innerText = numbers[random];
+        numbers.splice(random, 1);
+    }, time * 1000 + 1000);
 }
 
 function lottery() {
-    Array.from(document.querySelectorAll(".ball")).forEach(a => {
-        a.classList.remove("done"),
-        decryptEffect(a, getindex(a))
-    })
+    document.querySelectorAll(".ball").forEach((element, index) => {
+        element.classList.remove("done");
+        decryptEffect(element, index);
+    });
 }
 
-btn.addEventListener("click", function() {
-    tmp === 1 && (
-        numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45],
-        tmp = 0,
-        btn.classList.add("hide"),
-        lottery(),
-        setTimeout(function() {
-            tmp = 1,
-            btn.classList.remove("hide")
-        }, 8500)
-    )
-})
+document.getElementById("btn").addEventListener("click", function () {
+    if (tmp === 1) {
+        numbers = Array.from({ length: 45 }, (_, i) => i + 1);
+        tmp = 0;
+        btn.classList.add("hide");
+        lottery();
+        setTimeout(function () {
+            (tmp = 1), btn.classList.remove("hide");
+        }, 7500);
+    }
+});
